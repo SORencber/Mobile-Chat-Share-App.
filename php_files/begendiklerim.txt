@@ -1,0 +1,28 @@
+<?php
+include "baglanti.php";
+
+
+if(  isset($_POST['txtUsername']) && isset($_POST['txtPassword']))
+{
+	
+	$username=$_POST['txtUsername'];
+	$password=$_POST['txtPassword'];
+$sorgu="Select * from kullanicilar where eposta='$username' and sifre='$password' "; 	
+	$sonuc =mysql_query($sorgu);
+	if (mysql_num_rows($sonuc) > 0 )
+	{
+		echo "success_login";
+		exit;
+	}else {
+		
+		echo "Wrong Username and Password";
+	    exit;
+	}
+}
+?>
+<form action="index.php" method="POST">
+
+Eposta:<input type="text" name="txtUsername">
+Şifre :<input type="text" name="txtPassword">
+<input type="submit" value=" Gir ">
+</form>
